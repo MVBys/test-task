@@ -9,6 +9,8 @@
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    {{-- <link href="{{asset('css/app.css')}}" rel="stylesheet"> --}}
+    <link href="{{asset('css/index.css')}}" rel="stylesheet">
 
 </head>
 
@@ -21,6 +23,9 @@
         }
 
     </style>
+     <h1 class="text-3xl font-bold underline">
+        Hello world!
+      </h1>
     <div class="nav">
         @php
             $instances = ['substance'];
@@ -35,12 +40,14 @@
 
     </div>
 
-
-
-
     <div class="container">
         @yield('content')
     </div>
+
+
+{{-- @include('test') --}}
+
+
 </body>
 
 </html>

@@ -7,4 +7,6 @@
         {{ $substance->title }} <br />
         <hr>
     @endforeach
+
+    {{ $substances->links() }}
 @endsection

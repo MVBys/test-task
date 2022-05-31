@@ -21,7 +21,7 @@ class ActiveSubstanceController extends Controller
      */
     public function index()
     {
-        $substances = $this->model->all();
+        $substances = $this->model->paginate(5);
         // dd($substances);
         return view('substance.index', compact('substances'));
     }

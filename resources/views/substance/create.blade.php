@@ -16,7 +16,7 @@
         @endisset
 
         <h3>Title substance</h3>
-        <input type="text" name="title" value="{{ isset($substance) ? $substance->title : "" }}">
+        <input type="text" name="title" value="{{ isset($substance) ? $substance->title : old('title') }}">
 
         <button type="submit">ok</button>
     </form>
