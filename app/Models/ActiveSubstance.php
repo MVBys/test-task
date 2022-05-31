@@ -14,4 +14,9 @@ class ActiveSubstance extends Model
     public $fillable = [
         'title',
     ];
+
+    public function medical_product()
+    {
+        return $this->hasMany(MedicinalProduct::class);
+    }
 }

@@ -15,4 +15,9 @@ class Manufacturer extends Model
         'title',
         'link',
     ];
+
+    public function medical_product()
+    {
+        return $this->hasMany(MedicinalProduct::class);
+    }
 }

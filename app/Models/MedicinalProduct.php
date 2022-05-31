@@ -8,4 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class MedicinalProduct extends Model
 {
     use HasFactory;
+
+    public $fillable = [
+        'title',
+        'cost',
+    ];
+
+    public function substance()
+    {
+        return $this->belongsTo(ActiveSubstance::class);
+    }
+
+    public function manufacturer()
+    {
+        return $this->belongsTo(Manufacturer::class);
+    }
+
 }
