@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActiveSubstanceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -11,8 +12,19 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 Route::get('/', function () {
-    return view('welcome');
+
+    // dd(collect(Route::getRoutes())[1]->uri);
+    foreach (collect(Route::getRoutes()) as $url) {
+        echo '
+            <h3>
+                ' . $url->uri . '
+            <h3/>
+        ';
+
+    }
 });
+
+Route::resource('substance', ActiveSubstanceController::class);
