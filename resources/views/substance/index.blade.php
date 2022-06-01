@@ -8,5 +8,5 @@
         <hr>
     @endforeach
 
-    {{ $substances->links() }}
+    {{ $substances->links('vendor.pagination.tailwind') }}
 @endsection
