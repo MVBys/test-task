@@ -14,21 +14,21 @@
     </form>
 
 
+    <x-table>
+        <x-table.thead>
+            <x-table.tr>
+                <x-table.th class="w-20">Id</x-table.th>
+                <x-table.th>Substance</x-table.th>
+                <x-table.th>Options</x-table.th>
+            </x-table.tr>
+        </x-table.thead>
 
-    <table class="border-collapse border border-slate-300 w-full mb-2 text-center ...">
-        <thead>
-            <tr>
-                <th class="border border-slate-500 w-20 ...">Id</th>
-                <th class="border border-slate-500 ...">Substance</th>
-                <th class="border border-slate-500 ...">Options</th>
-            </tr>
-        </thead>
-        <tbody>
+        <x-table.tbody>
             @foreach ($substances as $substance)
-                <tr>
-                    <td class="border  ...">{{ $substance->id }}</td>
-                    <td class="border  ...">{{ $substance->title }}</td>
-                    <td class="border  ...">
+                <x-table.tr>
+                    <x-table.td>{{ $substance->id }}</x-table.td>
+                    <x-table.td>{{ $substance->title }}</x-table.td>
+                    <x-table.td>
                         <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
                             <button type="submit"
                                 class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-amber-500 hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500">Show</button>
@@ -38,11 +38,11 @@
                                 class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">Delete</button>
 
                         </div>
-                    </td>
-                </tr>
+                    </x-table.td>
+                </x-table.tr>
             @endforeach
-        </tbody>
-    </table>
+        </x-table.tbody>
+    </x-table>
 
     {{ $substances->links('vendor.pagination.tailwind') }}
 @endsection
