@@ -690,6 +690,10 @@ select {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
+.mx-1 {
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+}
 .ml-10 {
   margin-left: 2.5rem;
 }
