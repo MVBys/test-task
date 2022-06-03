@@ -21,7 +21,7 @@ class ActiveSubstanceController extends Controller
      */
     public function index()
     {
-        $substances = $this->model->paginate(5);
+        $substances = $this->model->OrderBy('id', 'desc')->paginate(5);
         // dd($substances);
         return view('substance.index', compact('substances'));
     }
@@ -48,7 +48,7 @@ class ActiveSubstanceController extends Controller
             'title' => 'required',
         ]);
         $substance = $this->model->create($request);
-        return redirect()->route('substance.show', $substance->id);
+        return redirect()->route('substance.index');
     }
 
     /**
