@@ -14,17 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::get('/', function () {
-
-    // dd(collect(Route::getRoutes())[1]->uri);
-    foreach (collect(Route::getRoutes()) as $url) {
-        echo '
-            <h3>
-                ' . $url->uri . '
-            <h3/>
-        ';
-
-    }
-});
-
 Route::resource('substance', ActiveSubstanceController::class);

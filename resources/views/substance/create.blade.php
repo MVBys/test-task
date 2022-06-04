@@ -18,7 +18,9 @@
         <h3>Title substance</h3>
         <input type="text" name="title" value="{{ isset($substance) ? $substance->title : old('title') }}">
 
-        <button type="submit">ok</button>
+        <x-button class="bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 w-1/6">update</x-button>
+        {{-- <button type="submit">ok</button> --}}
     </form>
+    <br>
     <hr>
 @endsection
