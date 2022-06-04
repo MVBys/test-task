@@ -31,7 +31,7 @@
                                 <a href="{{ route('substance.index') }}"
                                     class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Substance</a>
 
-                                <a href="#"
+                                <a href="{{ route('manufacturer.index') }}"
                                     class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Manufacturer</a>
 
                                 <a href="#"

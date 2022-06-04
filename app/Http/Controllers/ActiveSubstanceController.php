@@ -104,6 +104,11 @@ class ActiveSubstanceController extends Controller
     {
 
         $substance = $this->model->find($id);
+
+        if ($substance->medical_product->first()) {
+            return to_route('manufacturer.index');
+        }
+
         $substance->delete();
         return redirect()->route('substance.index');
     }
