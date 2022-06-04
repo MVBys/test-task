@@ -102,8 +102,9 @@ class ActiveSubstanceController extends Controller
      */
     public function destroy($id)
     {
+
         $substance = $this->model->find($id);
-        $substance->destroy;
+        $substance->delete();
         return redirect()->route('substance.index');
     }
 }
