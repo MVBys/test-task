@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ActiveSubstanceController;
 use App\Http\Controllers\ManufacturerController;
+use App\Http\Controllers\MedicinalProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,3 +18,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('substance', ActiveSubstanceController::class);
 Route::resource('manufacturer', ManufacturerController::class);
+Route::resource('product', MedicinalProductController::class);

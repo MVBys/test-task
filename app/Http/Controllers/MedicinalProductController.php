@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ActiveSubstance;
+use App\Models\MedicinalProduct;
 use Illuminate\Http\Request;
 
-class ActiveSubstanceController extends Controller
+class MedicinalProductController extends Controller
 {
 
-
-    public function __construct(ActiveSubstance $model)
+    public function __construct(MedicinalProduct $model)
     {
         $this->model = $model;
     }
-
     /**
      * Display a listing of the resource.
      *
@@ -21,9 +19,9 @@ class ActiveSubstanceController extends Controller
      */
     public function index()
     {
-        $substances = $this->model->OrderBy('id', 'desc')->paginate(5);
+        $products = $this->model->with(['substance', 'manufacturer'])->OrderBy('id', 'desc')->paginate(25);
         // dd($substances);
-        return view('substance.index', compact('substances'));
+        return view('product.index', compact('products'));
     }
 
     /**
@@ -33,7 +31,7 @@ class ActiveSubstanceController extends Controller
      */
     public function create()
     {
-        return view('substance.create');
+        //
     }
 
     /**
@@ -44,11 +42,7 @@ class ActiveSubstanceController extends Controller
      */
     public function store(Request $request)
     {
-        $request = $request->validate([
-            'title' => 'required',
-        ]);
-        $substance = $this->model->create($request);
-        return redirect()->route('substance.index');
+        //
     }
 
     /**
@@ -59,9 +53,7 @@ class ActiveSubstanceController extends Controller
      */
     public function show($id)
     {
-        $substance = $this->model->find($id);
-        // dd($substances);
-        return view('substance.show', compact('substance'));
+        //
     }
 
     /**
@@ -72,8 +64,7 @@ class ActiveSubstanceController extends Controller
      */
     public function edit($id)
     {
-        $substance = $this->model->find($id);
-        return view('substance.create', compact('substance'));
+        //
     }
 
     /**
@@ -85,13 +76,7 @@ class ActiveSubstanceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request = $request->validate([
-            'title' => 'required',
-        ]);
-        $substance = $this->model->find($id);
-        $substance->update($request);
-        return redirect()->route('substance.show', $substance->id);
-
+        //
     }
 
     /**
@@ -102,14 +87,6 @@ class ActiveSubstanceController extends Controller
      */
     public function destroy($id)
     {
-
-        $substance = $this->model->find($id);
-
-        if ($substance->medical_product->first()) {
-            return to_route('manufacturer.index');
-        }
-
-        $substance->delete();
-        return redirect()->route('substance.index');
+        //
     }
 }

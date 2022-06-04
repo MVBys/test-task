@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreign('substance_id')->references('id')->on('active_substances');
             $table->unsignedBigInteger('manufacturer_id');
             $table->foreign('manufacturer_id')->references('id')->on('manufacturers');
+            $table->float('cost', 6, 2);
             $table->timestamps();
         });
     }

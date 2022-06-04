@@ -22,9 +22,10 @@ class MedicinalProductFactory extends Factory
         $created = $this->faker->dateTimeBetween('-3 years', 'now', null);
         $updated = $this->faker->dateTimeBetween('-3 years', 'now', null);
         return [
-            'title' => $this->faker->word(),
+            'title' => $this->faker->company(),
             'substance_id' => ActiveSubstance::inRandomOrder()->first()->id,
             'manufacturer_id' => Manufacturer::inRandomOrder()->first()->id,
+            'cost' => $this->faker->randomFloat(null, $min = 20, $max = 1000),
             'created_at' => $created,
             'updated_at' => $updated > $created ? $updated : $created,
         ];
