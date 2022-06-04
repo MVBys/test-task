@@ -19,7 +19,7 @@ class MedicinalProductController extends Controller
      */
     public function index()
     {
-        $products = $this->model->with(['substance', 'manufacturer'])->OrderBy('id', 'desc')->paginate(25);
+        $products = $this->model->with(['substance', 'manufacturer'])->OrderBy('id', 'desc')->paginate(5);
         // dd($substances);
         return view('product.index', compact('products'));
     }
@@ -31,7 +31,7 @@ class MedicinalProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('product.create');
     }
 
     /**
@@ -42,7 +42,15 @@ class MedicinalProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request = $request->validate([
+            'title' => 'required',
+            'substance_id' => 'required',
+            'manufacturer_id' => 'required',
+            'cost' => 'required',
+        ]);
+        $product = $this->model->create($request);
+        return redirect()->route('product.index');
+
     }
 
     /**
@@ -53,7 +61,9 @@ class MedicinalProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = $this->model->with(['substance', 'manufacturer'])->find($id);
+        return view('product.show', compact('product'));
+
     }
 
     /**
@@ -87,6 +97,9 @@ class MedicinalProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = $this->model->find($id);
+        $product->delete();
+        return redirect()->route('product.index');
+
     }
 }
