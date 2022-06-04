@@ -17,6 +17,6 @@ class ActiveSubstance extends Model
 
     public function medical_product()
     {
-        return $this->hasMany(MedicinalProduct::class);
+        return $this->hasMany(MedicinalProduct::class, 'substance_id', 'id');
     }
 }

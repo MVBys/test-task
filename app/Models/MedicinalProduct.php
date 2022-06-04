@@ -16,7 +16,7 @@ class MedicinalProduct extends Model
 
     public function substance()
     {
-        return $this->belongsTo(ActiveSubstance::class);
+        return $this->belongsTo(ActiveSubstance::class, 'substance_id');
     }
 
     public function manufacturer()

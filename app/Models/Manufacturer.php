@@ -18,6 +18,6 @@ class Manufacturer extends Model
 
     public function medical_product()
     {
-        return $this->hasMany(MedicinalProduct::class);
+        return $this->hasMany(MedicinalProduct::class, );
     }
 }
