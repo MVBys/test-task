@@ -11,6 +11,8 @@ class MedicinalProduct extends Model
 
     public $fillable = [
         'title',
+        'substance_id',
+        'manufacturer_id',
         'cost',
     ];
 

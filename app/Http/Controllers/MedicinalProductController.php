@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ActiveSubstance;
+use App\Models\Manufacturer;
 use App\Models\MedicinalProduct;
 use Illuminate\Http\Request;
 
@@ -20,8 +22,10 @@ class MedicinalProductController extends Controller
     public function index()
     {
         $products = $this->model->with(['substance', 'manufacturer'])->OrderBy('id', 'desc')->paginate(5);
-        // dd($substances);
-        return view('product.index', compact('products'));
+        $manufacturers = Manufacturer::all();
+        $substances = ActiveSubstance::all();
+
+        return view('product.index', compact('products', 'manufacturers', 'substances'));
     }
 
     /**
@@ -48,7 +52,11 @@ class MedicinalProductController extends Controller
             'manufacturer_id' => 'required',
             'cost' => 'required',
         ]);
-        $product = $this->model->create($request);
+
+        $request['created_at'] = date("Y-m-d H:i:s");
+        $request['updated_at'] = date("Y-m-d H:i:s");
+        // dd($request);
+        $this->model->create($request);
         return redirect()->route('product.index');
 
     }
