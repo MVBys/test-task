@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 class ManufacturerController extends Controller
 {
 
-
     public function __construct(Manufacturer $model)
     {
         $this->model = $model;
@@ -20,8 +19,8 @@ class ManufacturerController extends Controller
      */
     public function index()
     {
-        $manufacturers = $this->model->OrderBy('id', 'desc')->paginate(5);
-        // dd($substances);
+        $manufacturers = $this->model->with(['medical_product'])->OrderBy('id', 'desc')->distinct()->paginate(5);
+
         return view('manufacturer.index', compact('manufacturers'));
 
     }

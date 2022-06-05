@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 class ActiveSubstanceController extends Controller
 {
 
-
     public function __construct(ActiveSubstance $model)
     {
         $this->model = $model;
@@ -21,8 +20,9 @@ class ActiveSubstanceController extends Controller
      */
     public function index()
     {
-        $substances = $this->model->OrderBy('id', 'desc')->paginate(5);
-        // dd($substances);
+
+        $substances = $this->model->with(['medical_product'])->OrderBy('id', 'desc')->distinct()->paginate(5);
+
         return view('substance.index', compact('substances'));
     }
 
