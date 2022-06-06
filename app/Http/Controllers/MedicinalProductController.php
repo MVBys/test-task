@@ -82,7 +82,10 @@ class MedicinalProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = $this->model->find($id);
+        $manufacturers = Manufacturer::all();
+        $substances = ActiveSubstance::all();
+        return view('product.create', compact('product', 'manufacturers', 'substances'));
     }
 
     /**
@@ -94,7 +97,18 @@ class MedicinalProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = $this->model->find($id);
+        $request = $request->validate([
+            'title' => 'required',
+            'substance_id' => 'required',
+            'manufacturer_id' => 'required',
+            'cost' => 'required',
+        ]);
+        $request['updated_at'] = date("Y-m-d H:i:s");
+
+        // dd($request);
+        $product->update($request);
+        return redirect()->route('product.index');
     }
 
     /**
