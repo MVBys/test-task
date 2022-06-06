@@ -3,7 +3,7 @@
 @section('content')
     <h1>Product</h1>
 
-    @include('product.fcreate_form')
+    @include('product.create_form')
 
     <br>
     <hr>

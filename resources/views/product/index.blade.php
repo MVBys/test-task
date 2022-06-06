@@ -1,22 +1,8 @@
 @extends('index')
 
 @section('content')
-    {{-- <x-modal>
-        <div>
-            <div class="mt-3 text-left sm:mt-5">
-                <span class="mb-8 text-xs font-semibold tracking-widest text-blue-600 uppercase">Securtiy
-                    code</span>
-                <div class="mt-2">
-                    <p class="mt-3 text-base leading-relaxed text-gray-500">This code expires in 24 hours.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </x-modal> --}}
 
-
-
-    @include('product.fcreate_form')
+    @include('product.create_form')
 
     <x-table>
         <x-table.thead>

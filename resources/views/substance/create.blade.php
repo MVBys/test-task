@@ -1,26 +1,9 @@
 @extends('index')
 
 @section('content')
-    <h1>Substance
-        @if (isset($substance))
-            update
-        @else
-            create
-        @endif
-    </h1>
+    <h1>Substance</h1>
 
-    <form method="POST" action="{{ isset($substance) ? route('substance.update', $substance->id) : route('substance.store') }}">
-        @csrf
-        @isset($substance)
-            @method('PATCH')
-        @endisset
-
-        <h3>Title substance</h3>
-        <input type="text" name="title" value="{{ isset($substance) ? $substance->title : old('title') }}">
-
-        <x-button class="bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 w-1/6">update</x-button>
-        {{-- <button type="submit">ok</button> --}}
-    </form>
+  @include('substance.create_form')
     <br>
     <hr>
 @endsection

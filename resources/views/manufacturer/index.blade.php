@@ -1,36 +1,9 @@
 @extends('index')
 
 @section('content')
-    {{-- <x-modal>
-        <div>
-            <div class="mt-3 text-left sm:mt-5">
-                <span class="mb-8 text-xs font-semibold tracking-widest text-blue-600 uppercase">Securtiy
-                    code</span>
-                <div class="mt-2">
-                    <p class="mt-3 text-base leading-relaxed text-gray-500">This code expires in 24 hours.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </x-modal> --}}
 
 
-    <form method="POST" action="{{ route('manufacturer.store') }}" id="form_create"
-        class="mt-1 mb-2 flex items-center text-center">
-        @csrf
-        <label for="title" class="w-1/5 mx-2 block text-base font-bold text-gray-700">manufacturer title</label>
-
-        <input type="text" name="title" id="title" autocomplete="given-name"
-            class="mx-2 mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-
-        <label for="link" class="w-1/5 mx-2 block text-base font-bold text-gray-700">manufacturer link</label>
-
-        <input type="text" name="link" id="title" autocomplete="given-name"
-            class="mx-2 mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-        <x-button form="form_create" class="bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 w-1/4">
-            Add
-        </x-button>
-    </form>
+    @include('manufacturer.create_form')
 
 
     <x-table>
