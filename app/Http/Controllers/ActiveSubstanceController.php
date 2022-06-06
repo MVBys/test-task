@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ActiveSubstanceRequest;
 use App\Models\ActiveSubstance;
 use Illuminate\Http\Request;
 
@@ -20,9 +21,7 @@ class ActiveSubstanceController extends Controller
      */
     public function index()
     {
-
-        $substances = $this->model->with(['medical_product'])->OrderBy('id', 'desc')->distinct()->paginate(5);
-
+        $substances = $this->model->getSubstancesWithPaginate(5);
         return view('substance.index', compact('substances'));
     }
 
@@ -42,12 +41,10 @@ class ActiveSubstanceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ActiveSubstanceRequest $request)
     {
-        $request = $request->validate([
-            'title' => 'required',
-        ]);
-        $substance = $this->model->create($request);
+        $request = $request->validated();
+        $this->model->create($request);
         return redirect()->route('substance.index');
     }
 
@@ -60,7 +57,6 @@ class ActiveSubstanceController extends Controller
     public function show($id)
     {
         $substance = $this->model->find($id);
-        // dd($substances);
         return view('substance.show', compact('substance'));
     }
 
@@ -83,13 +79,10 @@ class ActiveSubstanceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ActiveSubstance $request, $id)
     {
-        $request = $request->validate([
-            'title' => 'required',
-        ]);
-        $substance = $this->model->find($id);
-        $substance->update($request);
+        $data = $request->validated();
+        $substance = $this->model->updateSubstance($id, $data);
         return redirect()->route('substance.show', $substance->id);
 
     }
@@ -102,14 +95,7 @@ class ActiveSubstanceController extends Controller
      */
     public function destroy($id)
     {
-
-        $substance = $this->model->find($id);
-
-        if ($substance->medical_product->first()) {
-            return to_route('manufacturer.index');
-        }
-
-        $substance->delete();
-        return redirect()->route('substance.index');
+        $message = $this->model->deleteSubstance($id);
+        return to_route('substance.index', ['message' => $message]);
     }
 }

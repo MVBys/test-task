@@ -1,10 +1,12 @@
 @extends('index')
 
 @section('content')
+    {{-- @if(request()->input('message'))
+        {{ request()->input('message') }}
+    @endif --}}
 
 
-   @include('substance.create_form')
-
+    @include('substance.create_form')
 
     <x-table>
         <x-table.thead>
